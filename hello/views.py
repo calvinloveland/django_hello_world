@@ -9,5 +9,5 @@ def index(request):
     visitor_count = Visitors.objects.get_or_create(messed_up_the_database = 1) 
     visitor_count[0].visit_count +=1
     visitor_count[0].save()
-    return HttpResponse("Hello, world. The time at the server is: " + str(datetime.datetime.now().time())+ "!" +
+    return HttpResponse("Hello, world. The time is: " + str(datetime.datetime.now().time())+ "!" +
     "\n You are the: " +  str(visitor_count[0].visit_count) + "th visitor")
