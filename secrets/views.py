@@ -20,10 +20,7 @@ class CreatedView(generic.TemplateView):
     template_name = 'secrets/created.html'
     
     
-
-class NoteView(generic.TemplateView):
-    
-    template_name = 'secrets/view_note.html'
-    
-    def get_object(self):
-        return get_object_or_404(Note,note_id)
+def view_note(request, given_note_id):
+    template = 'secrets/view_note.html'
+    note = get_object_or_404(Note,note_id = given_note_id)
+    return render(request, template, {'note': note})
