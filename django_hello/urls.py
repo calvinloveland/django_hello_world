@@ -18,6 +18,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^secrets/', include('secrets.urls')),
     url(r'^polls/', include('polls.urls')),
     url(r'^pixels/', include('pixels.urls')),
     url(r'^hello/', include('hello.urls')),
