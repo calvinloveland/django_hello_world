@@ -12,7 +12,7 @@ def id_generator(size=10, chars=string.ascii_uppercase + string.digits):
 class Note(models.Model):
     note_text = models.TextField(max_length = 1000)
     note_id = models.CharField(max_length = 10,default = id_generator(), unique = True)
-    password = models.CharField(max_length = 64,default = '')
+    password = models.CharField(max_length = 64,default = '',blank = True)
     
     
     def save(self, *args, **kwargs):

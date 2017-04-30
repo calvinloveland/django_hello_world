@@ -27,7 +27,6 @@ class AboutView(generic.TemplateView):
     template_name = 'secrets/about.html'  
     
 def view_note(request, given_note_id):
-    
     template = 'secrets/view_note.html'
     note = get_object_or_404(Note,note_id = given_note_id)
     viewer = note.viewer;
@@ -46,8 +45,13 @@ def get_note(request):
     viewer.ip = get_ip(request)
     viewer.viewed = True;
     viewer.viewed_time = timezone.now()
+    viewer.save();
     template = 'secrets/note_response.html'
     return render(request,template,{'note':note})
 
-
+def get_stats(request,given_note_id):
+    template = 'secrets/view_stats.html'
+    note = get_object_or_404(Note,note_id = given_note_id)
+    viewer = note.viewer;
+    return render(request, template, {'viewer': viewer })
 
