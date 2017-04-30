@@ -32,4 +32,5 @@ class Viewer(models.Model):
     expiry = models.DateTimeField(default = datetime.datetime.now() + datetime.timedelta(days = 7))
     viewed = models.BooleanField(default = False)
     viewed_time = models.DateTimeField(default = datetime.datetime.now())
+    view_attempts = models.IntegerField(default = 0)
     

@@ -35,6 +35,8 @@ def view_note(request, given_note_id):
 def get_note(request):
     note = get_object_or_404(Note,note_id = request.POST.get('id',''))
     viewer = note.viewer
+    viewer.view_attempts = viewer.view_attempts + 1
+    viewer.save()
     if viewer.expiry < timezone.now():
         viewer.delete()
         return HttpResponse('<h1>Note has expired</h1>')
@@ -45,6 +47,7 @@ def get_note(request):
     viewer.ip = get_ip(request)
     viewer.viewed = True;
     viewer.viewed_time = timezone.now()
+    
     viewer.save();
     template = 'secrets/note_response.html'
     return render(request,template,{'note':note})
